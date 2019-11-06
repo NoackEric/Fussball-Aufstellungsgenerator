@@ -32,7 +32,7 @@ let Mannschaft = {
         this.generiereMittelfeld();
         this.generiereSturm();
     },
-    generiereTorwart() {git 
+    generiereTorwart() {
         let torContainer = document.getElementById("torContainer");
         torContainer.innerHTML = '';
 
@@ -80,29 +80,39 @@ let Mannschaft = {
     })
     },
 }
-
+//  Constructive function // der erste buchstabe ist zu meist eine constructur function
+function Spieler(name, position  ) {
+    this.name = name;
+    this.position = position;
+    this.age = Math.round(Math.random() * 20 + 20);
+    this.ChangePosition = function(position){
+        this.position = position
+    }
+  }
 
 //Array innerhalb von einem object
 Mannschaft.mannschaft = [
-    { name: 'Micha', position: 'Torwart' },
-    { name: 'Eric', position: 'Abwehr' },
-    { name: 'Anass', position: 'Abwehr' },
-    { name: 'Richie', position: 'Abwehr' },
-    { name: 'Klaus', position: 'Abwehr' },
-    { name: 'Christian', position: 'Abwehr' },
-    { name: 'Sergio', position: 'Abwehr' },
-    { name: 'Anton', position: 'Mittelfeld' },
-    { name: 'Michal', position: 'Mittelfeld' },
-    { name: 'Navid', position: 'Mittelfeld' },
-    { name: 'Georg', position: 'Mittelfeld' },
-    { name: 'Rihab', position: 'Mittelfeld' },
-    { name: 'Ali', position: 'Mittelfeld' },
-    { name: 'Mustafa', position: 'Sturm' },
-    { name: 'Shapour', position: 'Sturm' },
-    { name: 'Sam', position: 'Sturm' },
-    { name: 'Kim', position: 'Sturm' },
-    { name: 'Rezan', position: 'Sturm' },
-    { name: 'Waheel', position: 'Sturm' }
+    new Spieler('Micha', 'Torwart', ),
+    new Spieler('Eric', 'Abwehr', ),
+    new Spieler('Anass', 'Abwehr', ),
+    new Spieler('Richi', 'Abwehr', ),
+    new Spieler('Klaus', 'Abwehr', ),
+    new Spieler('Sergio', 'Abwehr',  ),
+    new Spieler('Anton', 'Mittelfeld', ),
+    new Spieler('Michal', 'Mittelfeld',  ),
+    new Spieler('Navid', 'Mittelfeld',  ),
+    new Spieler('Georg', 'Mittelfeld',  ),
+    new Spieler('Rihab', 'Mittelfeld',  ),
+    new Spieler('Ali', 'Mittelfeld',  ),
+    new Spieler('Micha', 'Torwart',  ),
+    new Spieler('Micha', 'Torwart', ),
+    new Spieler('Micha', 'Torwart',  ),
+    new Spieler('Mustafa', 'Sturm', ),
+    new Spieler('Shapour','Sturm', ),
+    new Spieler('Sam','Sturm', ),
+    new Spieler('Kim','Sturm', ),
+    new Spieler('Rezan','Sturm',),
+    new Spieler('Waheel','Sturm',)
 ]
 // Prüft ob etwas in der html id "eingabe" geschehen ist. Dies kann alles sein was seine struktur verändert.
 //in diesem falle wenn der wert eines input feldes verändert wird. Wenn das der fall ist wird die methode "aufstellung" ausgeführt.
@@ -117,16 +127,3 @@ Mannschaft.aufstellung()
 //     alert( 'Arrowfunc')   <----Dies ist eine aufrufbare arrow function welche man mit mit der var. () aufrufen kann!
 // }
 
-
-
-
-/* if(eTarget.id == 'abwehr'){
-       this.abwehr = eTarget.value;
-}
-   if(eTarget.id == 'mittelfeld'){
-       this.mittelfeld = eTarget.value;
-}
-   if(eTarget.id == 'sturm'){
-       this.sturm = eTarget.value;
-}
-*/
