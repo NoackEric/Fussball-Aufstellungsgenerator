@@ -1,0 +1,20 @@
+#ausgabe{
+    background: url('../img/feld1.jpg');
+    background-repeat: no-repeat; 
+    background-position: center;
+    height: 80vh;
+    padding-top: 30px;
+}
+section{
+    display: flex;
+    background: rgba(128, 128, 128, 0.2);
+    justify-content: center;
+
+}
+section div{
+    height: 20px;
+    min-width: 20px;
+    background: red;
+    padding: 6px;
+    margin: 1em;
+}
