@@ -6,53 +6,82 @@ let Mannschaft = {
     sturm: 2,
     aufstellung(eTarget) {
         if (eTarget) {
-            this[eTarget.id] = Number(eTarget.value); // Bekommen dadurch das value, durch das eventlistener , wenn etwas verändert wurde
-            if (this.abwehr + this.mittelfeld + this.sturm === 10) {                       // hier wird überprüft ob die gesamt anzahl der spieler 11 beträgt!
+            // Bekommen dadurch das value, durch das eventlistener , wenn etwas verändert wurde
+            if (eTarget.id == 'abwehr') {
+                this.generiereAbwehr();
+                this.abwehr = Number(eTarget.value);
+            }
+            if (eTarget.id == 'mittelfeld') {
+                this.generiereMittelfeld();
+                this.mittelfeld = Number(eTarget.value);
+            }
+            if (eTarget.id == 'sturm') {
+                this.generiereSturm();
+                this.sturm = Number(eTarget.value);
+            }
+
+            if (this.abwehr + this.mittelfeld + this.sturm === 10) {        // hier wird überprüft ob die gesamt anzahl der spieler 11 beträgt!
                 document.getElementById('error').innerHTML = 'Kann losgehen'
             } else {
                 document.getElementById('error').innerHTML = 'Die Mannschaft muss 11 Spieler haben, DU Juppi'
             }
         }
         // container  speichern und initalisieren // um zu verhindern dass der cointainer ewig viele namen aufnimmt
-        let abwehrContainer = document.getElementById('abwehrContainer');
-        abwehrContainer.innerHTML = '';
-        let mittelfeldContainer = document.getElementById('mittelfeldContainer');
-        mittelfeldContainer.innerHTML = '';
-        let sturmContainer = document.getElementById('sturmContainer');
-        sturmContainer.innerHTML = '';
-        // damit der changer erkennt dass entwerder ++ oder - gedrückt wurde
-        let anzahlAbwehr = 0;
-        let anzahlMittelfeld = 0;
-        let anzahlSturm = 0;
-        // In dieser funktion wird geprüft ob ein event sattgefunden hat
-        this.mannschaft.forEach((spieler) => {    // Arrowfunction für einen call back ( um infos heraus zu holen )
-            console.log(this);
-            //Wenn innerhalb einer Methode eine Function ausgeführt wird , bezieht sich "this."  nichtmehr auf das object!
-            //innerhalb der forEach funktion wird this. ( aufs window ) bezogen. deshalb muss man das objekt direkt angeben (Mannschaft)!!
+        this.generiereTorwart();
+        this.generiereAbwehr();
+        this.generiereMittelfeld();
+        this.generiereSturm();
+    },
+    generiereTorwart() {git 
+        let torContainer = document.getElementById("torContainer");
+        torContainer.innerHTML = '';
+
+        this.mannschaft.forEach((spieler) => {
             if (spieler.position == 'Torwart') { // spieler ist hier ein parameter
                 document.getElementById("torContainer").innerHTML = `<div> ${spieler.name}</div>`;
             }
-            // Abwehr
+        })
+    },
+
+    generiereAbwehr() {
+        let anzahlAbwehr = 0; // damit der changer erkennt dass entwerder ++ oder - gedrückt wurde
+        let abwehrContainer = document.getElementById('abwehrContainer');
+        abwehrContainer.innerHTML = '';
+
+        this.mannschaft.forEach((spieler) => {
             if (spieler.position == 'Abwehr' && anzahlAbwehr < this.abwehr) {
-                document.getElementById("abwehrContainer").innerHTML += `<div> ${spieler.name}</div>`
+                abwehrContainer.innerHTML += `<div> ${spieler.name}</div>`
                 anzahlAbwehr++;
             }
-            //MIttelfeld
+        })
+    },
+    generiereMittelfeld() {
+        let anzahlMittelfeld = 0; // damit der changer erkennt dass entwerder ++ oder - gedrückt wurde
+        let mittelfeldContainer = document.getElementById('mittelfeldContainer');
+        mittelfeldContainer.innerHTML = '';
+
+        this.mannschaft.forEach((spieler) => {
             if (spieler.position == 'Mittelfeld' && anzahlMittelfeld < this.mittelfeld) {
                 document.getElementById("mittelfeldContainer").innerHTML += `<div> ${spieler.name}</div>`
                 anzahlMittelfeld++;
             }
-            //Sturm
-            if (spieler.position == 'Sturm' && anzahlSturm < this.sturm) {
-                document.getElementById("sturmContainer").innerHTML += `<div> ${spieler.name}</div>`
-                anzahlSturm++;
-            }
         })
-    }
-    generiereAbwehr (){
+    },
+    generiereSturm() {
+        let anzahlSturm = 0; // damit der changer erkennt dass entwerder ++ oder - gedrückt wurde
+        let sturmContainer = document.getElementById('sturmContainer');
+        sturmContainer.innerHTML = '';
         
-    } 
+        this.mannschaft.forEach((spieler) => {
+        if (spieler.position == 'Sturm' && anzahlSturm < this.sturm) {
+            document.getElementById("sturmContainer").innerHTML += `<div> ${spieler.name}</div>`
+            anzahlSturm++;
+        }
+    })
+    },
 }
+
+
 //Array innerhalb von einem object
 Mannschaft.mannschaft = [
     { name: 'Micha', position: 'Torwart' },
